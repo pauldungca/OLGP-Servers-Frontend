@@ -32,62 +32,102 @@
 
         <!-- Right Section -->
         <div
-          class="right-section p-5 bg-white d-flex flex-column justify-content-center"
+          class="right-section p-5 bg-white d-flex flex-column justify-content-between align-items-center"
+          style="border-radius: 20px; height: 100%"
         >
-          <h2 class="mb-4 text-center text-secondary" style="font-size: 40px">
-            Login
-          </h2>
-          <form>
-            <!-- ID Number -->
-            <div class="mb-4">
-              <input
-                type="text"
-                class="form-control"
-                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                placeholder="ID number"
-                style="height: 45px; border-radius: 4px; padding: 10px 15px"
-              />
-            </div>
+          <img
+            src="images/Security Lock.png"
+            alt="Security"
+            style="width: 150px; margin-bottom: 30px"
+          />
 
-            <!-- Password -->
-            <div class="mb-4 position-relative">
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Password"
-                id="password"
-                style="
-                  height: 45px;
-                  border-radius: 4px;
-                  padding: 10px 15px;
-                  padding-right: 40px;
-                "
-              />
-              <i
-                class="bi bi-eye-slash toggle-password"
-                style="
-                  position: absolute;
-                  top: 50%;
-                  right: 15px;
-                  transform: translateY(-50%);
-                  cursor: pointer;
-                  font-size: 1.1rem;
-                "
-                onclick="togglePasswordVisibility()"
-              ></i>
-            </div>
+          <div class="mb-4 text-center d-none" id="otp-message">
+            <p class="mb-0">OTP is sent to</p>
+            <p class="mb-0 fw-bold">johnpauldungca0908@gmail.com</p>
+          </div>
 
-            <div class="mb-4 text-end" style="margin-top: -8px">
-              <a
-                href="#"
-                class="text-decoration-none"
-                style="font-size: 0.875rem"
-                >Forgot password?</a
-              >
-            </div>
+          <!-- OTP Input Boxes -->
+          <div class="d-flex gap-2 mb-4" id="otp-inputs">
+            <input
+              type="text"
+              maxlength="1"
+              class="form-control text-center otp-input"
+              style="width: 50px; height: 60px; font-size: 24px"
+              disabled
+            />
+            <input
+              type="text"
+              maxlength="1"
+              class="form-control text-center otp-input"
+              style="width: 50px; height: 60px; font-size: 24px"
+              disabled
+            />
+            <input
+              type="text"
+              maxlength="1"
+              class="form-control text-center otp-input"
+              style="width: 50px; height: 60px; font-size: 24px"
+              disabled
+            />
+            <input
+              type="text"
+              maxlength="1"
+              class="form-control text-center otp-input"
+              style="width: 50px; height: 60px; font-size: 24px"
+              disabled
+            />
+            <input
+              type="text"
+              maxlength="1"
+              class="form-control text-center otp-input"
+              style="width: 50px; height: 60px; font-size: 24px"
+              disabled
+            />
+            <input
+              type="text"
+              maxlength="1"
+              class="form-control text-center otp-input"
+              style="width: 50px; height: 60px; font-size: 24px"
+              disabled
+            />
+          </div>
 
-            <button type="submit" class="btn btn-login">Sign in</button>
-          </form>
+          <!-- Buttons -->
+          <div class="d-flex justify-content-between w-100 px-5 mb-3">
+            <a
+              href="index.html"
+              class="btn btn-cancel d-flex align-items-center justify-content-center"
+            >
+              <i class="bi bi-x-circle me-1"></i> Cancel
+            </a>
+            <button
+              id="verify-btn"
+              class="btn btn-verify px-4 disabled"
+              disabled
+              onclick="getOTP()"
+            >
+              Verify OTP
+            </button>
+          </div>
+
+          <!-- Email Link -->
+          <div class="text-center mt-2">
+            <button
+              type="button"
+              class="text-decoration-none"
+              style="
+                color: #3454b4;
+                background: none;
+                border: none;
+                padding: 0;
+                font: inherit;
+                cursor: pointer;
+              "
+              onclick="sendOTP()"
+            >
+              Click here to receive an OTP via email
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -99,19 +139,53 @@
     />
 
     <script>
-      function togglePasswordVisibility() {
-        const passwordInput = document.getElementById("password");
-        const toggleIcon = document.querySelector(".toggle-password");
+      function sendOTP() {
+        // Show the OTP message
+        document.getElementById("otp-message").classList.remove("d-none");
+        // Enable the Verify OTP button
+        var verifyBtn = document.getElementById("verify-btn");
+        verifyBtn.classList.remove("disabled");
+        verifyBtn.disabled = false;
+        // Enable OTP input boxes
+        var otpInputs = document.querySelectorAll("#otp-inputs input");
+        otpInputs.forEach(function (input) {
+          input.disabled = false;
+          input.value = ""; // clear previous values
+        });
+        // Focus the first input
+        otpInputs[0].focus();
+      }
 
-        if (passwordInput.type === "password") {
-          passwordInput.type = "text";
-          toggleIcon.classList.remove("bi-eye-slash");
-          toggleIcon.classList.add("bi-eye");
-        } else {
-          passwordInput.type = "password";
-          toggleIcon.classList.remove("bi-eye");
-          toggleIcon.classList.add("bi-eye-slash");
-        }
+      // Move to next input on input
+      document.addEventListener("DOMContentLoaded", function () {
+        var otpInputs = document.querySelectorAll("#otp-inputs input");
+        otpInputs.forEach(function (input, idx) {
+          input.addEventListener("input", function (e) {
+            // Only allow numbers
+            this.value = this.value.replace(/[^0-9]/g, "");
+            if (this.value.length === 1 && idx < otpInputs.length - 1) {
+              otpInputs[idx + 1].focus();
+            }
+          });
+          input.addEventListener("keydown", function (e) {
+            // Backspace: go to previous input if empty
+            if (e.key === "Backspace" && this.value === "" && idx > 0) {
+              otpInputs[idx - 1].focus();
+            }
+          });
+        });
+      });
+
+      function getOTP() {
+        // Collect the OTP from inputs
+        var otp = "";
+        var otpInputs = document.querySelectorAll("#otp-inputs input");
+        otpInputs.forEach(function (input) {
+          otp += input.value;
+        });
+
+        //alert("Your OTP is: " + otp); // For demonstration purposes
+        window.location.href = "forgot-password.html";
       }
     </script>
   </body>
