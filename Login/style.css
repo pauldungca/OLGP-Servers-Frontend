@@ -76,7 +76,7 @@
   position: absolute;
   width: 592px;
   height: 95px;
-  top: 598px;
+  top: 650px;
   left: 971px;
   background-color: #ffffff;
   border-radius: 15px;
@@ -88,7 +88,7 @@
   position: absolute;
   width: 592px;
   height: 95px;
-  top: 454px;
+  top: 500px;
   left: 971px;
   background-color: #ffffff;
   border-radius: 15px;
@@ -98,7 +98,7 @@
 
 .frame .text-wrapper {
   position: absolute;
-  top: 482px;
+  top: 530px;
   left: 1005px;
   font-family: "Inter", Helvetica;
   font-weight: 500;
@@ -111,7 +111,6 @@
 
 .frame .text-wrapper-2 {
   position: absolute;
-  top: 309px;
   left: 1188px;
   font-family: "Inter", Helvetica;
   font-weight: 500;
@@ -123,7 +122,7 @@
 
 .frame .text-wrapper-3 {
   position: absolute;
-  top: 705px;
+  top: 755px;
   left: 1356px;
   font-family: "Inter", Helvetica;
   font-weight: 500;
@@ -134,30 +133,28 @@
   white-space: nowrap;
 }
 
-.frame .rectangle-5 {
+.frame .sign-in-button {
   position: absolute;
+  top: 800px;
+  left: 1081px;
   width: 323px;
   height: 85px;
-  top: 769px;
-  left: 1081px;
   background-color: #418dff;
   border-radius: 25px;
-  border: 1px solid;
-  border-color: #9c9c9c;
-}
-
-.frame .text-wrapper-4 {
-  position: absolute;
-  top: 793px;
-  left: 1199px;
-  font-family: "Inter", Helvetica;
+  border: 1px solid #9c9c9c;
+  font-family: "Inter", Helvetica, sans-serif;
+  font-size: 30px;
   font-weight: 500;
   color: #ffffff;
-  font-size: 30px;
-  letter-spacing: 0;
-  line-height: normal;
+  text-align: center;
+  cursor: pointer;
   white-space: nowrap;
+  line-height: 85px; /* vertically centers text */
+  padding: 0;
+  background-clip: padding-box;
 }
+
+
 
 .frame .logo {
   position: absolute;
@@ -172,14 +169,19 @@
   position: absolute;
   width: 45px;
   height: 79px;
-  top: 614px;
+  top: 660px;
+  left: 1500px;
+}
+.frame .invisible2 {
+  position: absolute;
+  width: 45px;
+  height: 79px;
+  top: 510px;
   left: 1500px;
 }
 
 .frame .text-wrapper-5 {
   position: absolute;
-  top: 627px;
-  left: 1005px;
   font-family: "Inter", Helvetica;
   font-weight: 500;
   color: #686868;
@@ -223,7 +225,7 @@
   top: 711px;
   left: 940px;
   display: flex;
-  gap: 10px; /* space between text and timer */
+  gap: 10px; 
   align-items: center;
 }
 
@@ -237,17 +239,22 @@
   line-height: normal;
   margin: 0;
 }
+.frame .timer{
+  color: #5686e1;
+}
+
 .frame .otp-buttons {
   position: absolute;
   top: 800px; 
-  left: 950px; 
+  left: 990px; 
   display: flex;
   gap: 40px; 
   align-items: center;
 }
 
 .frame .button {
-  padding: 29px 64px;
+  width: 250px;
+  height: 90px;              
   background-color: #418dff;
   color: #ffffff;
   border-radius: 20px;
@@ -255,6 +262,7 @@
   font-size: 30px;
   font-weight: 500;
   text-align: center;
+  line-height: 90px;        
   cursor: pointer;
   white-space: nowrap;
 }
@@ -270,4 +278,33 @@
   letter-spacing: 0;
   line-height: normal;
   white-space: nowrap;
+}
+
+.frame .reset-buttons {
+  position: absolute;
+  top: 800px; 
+  left: 1200px; 
+  display: flex;
+  gap: 40px; 
+  align-items: center;
+}
+
+.frame .btnreset {
+  width: 159px;
+  height: 73px;
+  background-color: #418dff;
+  color: #ffffff;
+  border-radius: 20px;
+  font-family: "Inter", Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.frame .btnreset.btn-cancel {
+  background-color: #a9a9a9; 
 }
