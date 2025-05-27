@@ -188,4 +188,61 @@
   line-height: normal;
   white-space: nowrap;
 }
+.frame .security-lock{
+  position: absolute;
+  width: 297px;
+  height: 261px;
+  top: 176px;
+  left: 1098px;
+}
 
+.otpbox1 {
+  position: absolute;
+  width: 83px;
+  height: 101px;
+  top: 603px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid;
+  border: color #404040;;
+}
+
+.frame .enter-OTP-sent-to{
+  position: absolute;
+  top: 444px;
+  left: 1098px;
+  font-family: "inter-medium", helvetica;
+  font-weight: 500;
+  color: #474747;
+  font-size: 25px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.frame .otp-info {
+  position: absolute;
+  top: 711px;
+  left: 940px;
+  display: flex;
+  gap: 10px; /* space between text and timer */
+  align-items: center;
+}
+
+.frame .resend,
+.frame .timer {
+  font-family: "Inter", Helvetica, sans-serif;
+  font-weight: 500;
+  color: #474747;
+  font-size: 19px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin: 0;
+}
+.frame .verify{
+  position: absolute;
+  width: 281px;
+  height: 93px;
+  top: 800px;
+  left: 1250px;
+  background-color: #5686e1;
+  border-radius: 30px;
+}
