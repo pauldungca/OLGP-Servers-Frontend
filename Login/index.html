@@ -21,47 +21,41 @@
       background-size: cover;
     "
   >
-    <div class="d-flex justify-content-center align-items-center vh-100">
-      <div class="card login-card d-flex flex-row overflow-hidden">
-        <!-- Left Section -->
+    <div
+      class="container-fluid min-vh-100 d-flex justify-content-center align-items-center p-3"
+    >
+      <div
+        class="card login-card d-flex flex-column flex-md-row w-100 overflow-hidden"
+        style="max-width: 900px"
+      >
         <div
-          class="left-section d-flex justify-content-center align-items-center h-100"
+          class="left-section d-flex justify-content-center align-items-center p-4"
         >
           <img src="images/logo.png" alt="Logo" class="logo" />
         </div>
-
-        <!-- Right Section -->
         <div
           class="right-section p-5 bg-white d-flex flex-column justify-content-center"
         >
-          <h2 class="mb-4 text-center text-secondary" style="font-size: 40px">
+          <h2 class="mb-4 text-center text-secondary" style="font-size: 2rem">
             Login
           </h2>
           <form>
-            <!-- ID Number -->
             <div class="mb-4">
               <input
                 type="text"
                 class="form-control"
                 oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                 placeholder="ID number"
-                style="height: 45px; border-radius: 4px; padding: 10px 15px"
+                style="height: 45px"
               />
             </div>
-
-            <!-- Password -->
             <div class="mb-4 position-relative">
               <input
                 type="password"
                 class="form-control"
                 placeholder="Password"
                 id="password"
-                style="
-                  height: 45px;
-                  border-radius: 4px;
-                  padding: 10px 15px;
-                  padding-right: 40px;
-                "
+                style="height: 45px; padding-right: 40px"
               />
               <i
                 class="bi bi-eye-slash toggle-password"
@@ -71,12 +65,10 @@
                   right: 15px;
                   transform: translateY(-50%);
                   cursor: pointer;
-                  font-size: 1.1rem;
                 "
                 onclick="togglePasswordVisibility()"
               ></i>
             </div>
-
             <div class="mb-4 text-end" style="margin-top: -8px">
               <a
                 href="verify-OTP.html"
@@ -85,24 +77,20 @@
                 >Forgot password?</a
               >
             </div>
-
             <button type="submit" class="btn btn-login">Sign in</button>
           </form>
         </div>
       </div>
     </div>
 
-    <!-- Bootstrap Icons CDN -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     />
-
     <script>
       function togglePasswordVisibility() {
         const passwordInput = document.getElementById("password");
         const toggleIcon = document.querySelector(".toggle-password");
-
         if (passwordInput.type === "password") {
           passwordInput.type = "text";
           toggleIcon.classList.remove("bi-eye-slash");
