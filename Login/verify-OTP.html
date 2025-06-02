@@ -21,16 +21,18 @@
       background-size: cover;
     "
   >
-    <div class="d-flex justify-content-center align-items-center vh-100">
-      <div class="card login-card d-flex flex-row overflow-hidden">
-        <!-- Left Section -->
+    <div
+      class="container-fluid min-vh-100 d-flex justify-content-center align-items-center p-3"
+    >
+      <div
+        class="card login-card d-flex flex-column flex-md-row w-100 overflow-hidden"
+        style="max-width: 900px"
+      >
         <div
-          class="left-section d-flex justify-content-center align-items-center h-100"
+          class="left-section d-flex justify-content-center align-items-center p-4"
         >
           <img src="images/logo.png" alt="Logo" class="logo" />
         </div>
-
-        <!-- Right Section -->
         <div
           class="right-section p-5 bg-white d-flex flex-column justify-content-between align-items-center"
           style="border-radius: 20px; height: 100%"
@@ -40,13 +42,10 @@
             alt="Security"
             style="width: 150px; margin-bottom: 30px"
           />
-
           <div class="mb-4 text-center d-none" id="otp-message">
             <p class="mb-0">OTP is sent to</p>
             <p class="mb-0 fw-bold">johnpauldungca0908@gmail.com</p>
           </div>
-
-          <!-- OTP Input Boxes -->
           <div class="d-flex gap-2 mb-4" id="otp-inputs">
             <input
               type="text"
@@ -91,8 +90,6 @@
               disabled
             />
           </div>
-
-          <!-- Buttons -->
           <div class="d-flex justify-content-between w-100 px-5 mb-3">
             <a
               href="index.html"
@@ -102,15 +99,13 @@
             </a>
             <button
               id="verify-btn"
-              class="btn btn-verify px-4 disabled"
+              class="btn btn-verify text-nowrap"
               disabled
               onclick="getOTP()"
             >
               Verify OTP
             </button>
           </div>
-
-          <!-- Email Link -->
           <div class="text-center mt-2">
             <button
               type="button"
@@ -132,43 +127,34 @@
       </div>
     </div>
 
-    <!-- Bootstrap Icons CDN -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     />
-
     <script>
       function sendOTP() {
-        // Show the OTP message
         document.getElementById("otp-message").classList.remove("d-none");
-        // Enable the Verify OTP button
         var verifyBtn = document.getElementById("verify-btn");
         verifyBtn.classList.remove("disabled");
         verifyBtn.disabled = false;
-        // Enable OTP input boxes
         var otpInputs = document.querySelectorAll("#otp-inputs input");
         otpInputs.forEach(function (input) {
           input.disabled = false;
-          input.value = ""; // clear previous values
+          input.value = "";
         });
-        // Focus the first input
         otpInputs[0].focus();
       }
 
-      // Move to next input on input
       document.addEventListener("DOMContentLoaded", function () {
         var otpInputs = document.querySelectorAll("#otp-inputs input");
         otpInputs.forEach(function (input, idx) {
-          input.addEventListener("input", function (e) {
-            // Only allow numbers
+          input.addEventListener("input", function () {
             this.value = this.value.replace(/[^0-9]/g, "");
             if (this.value.length === 1 && idx < otpInputs.length - 1) {
               otpInputs[idx + 1].focus();
             }
           });
           input.addEventListener("keydown", function (e) {
-            // Backspace: go to previous input if empty
             if (e.key === "Backspace" && this.value === "" && idx > 0) {
               otpInputs[idx - 1].focus();
             }
@@ -177,14 +163,11 @@
       });
 
       function getOTP() {
-        // Collect the OTP from inputs
         var otp = "";
         var otpInputs = document.querySelectorAll("#otp-inputs input");
         otpInputs.forEach(function (input) {
           otp += input.value;
         });
-
-        //alert("Your OTP is: " + otp); // For demonstration purposes
         window.location.href = "forgot-password.html";
       }
     </script>
