@@ -20,16 +20,44 @@
     <!-- MAIN section -->
     <li class="nav-section">MAIN</li>
     <li class="nav-item">
-      <a href="#" class="nav-link active">
+      <a href="layout.html?page=dashboard" class="nav-link">
         <img src="../../../img/sidebar-icons/Dashboard.png" class="icon" />
         <span>Dashboard</span>
       </a>
     </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link">
+    <li class="nav-item has-submenu">
+      <a
+        href="#"
+        class="nav-link"
+        onclick="toggleSubmenu(event, 'schedule-submenu')"
+      >
         <img src="../../../img/sidebar-icons/Schedule.png" class="icon" />
         <span>Schedule</span>
+        <img
+          src="../../../img/sidebar-icons/arrow.png"
+          class="arrow-icon ms-auto"
+        />
       </a>
+      <ul class="submenu" id="schedule-submenu">
+        <li class="nav-item">
+          <a href="layout.html?page=make-schedule" class="nav-link sub-link">
+            <img
+              src="../../../img/sidebar-icons/MakeSchedule.png"
+              class="icon"
+            />
+            <span>Make Schedule</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="layout.html?page=view-schedule" class="nav-link sub-link">
+            <img
+              src="../../../img/sidebar-icons/ViewSchedule.png"
+              class="icon"
+            />
+            <span>View Schedule</span>
+          </a>
+        </li>
+      </ul>
     </li>
     <li class="nav-item">
       <a href="#" class="nav-link">
@@ -61,7 +89,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="#" class="nav-link">
+      <a href="#" class="nav-link" onclick="logout()">
         <img src="../../../img/sidebar-icons/Logout.png" class="icon" />
         <span>Logout</span>
       </a>
