@@ -3,22 +3,25 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+/* Login Card Container */
 .login-card {
   border-radius: 25px;
   height: auto;
 }
 
-/* Responsive sections */
+/* Left Section */
 .left-section {
   width: 100%;
   height: 200px;
   background: linear-gradient(to bottom right, #3454b4, #596ad9);
 }
 
+/* Right Section */
 .right-section {
   width: 100%;
 }
 
+/* Logo */
 .logo {
   width: 200px;
   height: 200px;
@@ -27,6 +30,7 @@ body {
   padding: 10px;
 }
 
+/* Login Button */
 .btn-login {
   height: 45px;
   background-color: #3454b4;
@@ -44,6 +48,7 @@ body {
   border: 2px solid #3454b4;
 }
 
+/* OTP / Confirm Button */
 .btn-verify {
   height: 45px;
   background-color: #596ad9;
@@ -51,7 +56,10 @@ body {
   border-radius: 4px;
   font-weight: 500;
   color: white;
-  width: 45%;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  padding: 0.5rem 1.25rem;
   transition: background-color 0.2s ease;
 }
 
@@ -61,14 +69,18 @@ body {
   border: 2px solid #596ad9;
 }
 
+/* Cancel Button */
 .btn-cancel {
   height: 45px;
-  width: 45%;
-  border: 1px solid #ccc;
   background-color: white;
+  border: 1px solid #ccc;
   border-radius: 4px;
   font-weight: 500;
   color: #3454b4;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  padding: 0.5rem 1.25rem;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -76,15 +88,35 @@ body {
   background-color: #f0f0f0;
 }
 
+/* OTP Inputs */
 .otp-input {
   font-weight: bold;
   text-align: center;
+  border-radius: 8px;
+  box-shadow: none;
 }
 
-.btn-verify {
-  white-space: nowrap; 
+/* Smaller logo on small screens */
+@media (max-width: 767.2px) {
+  .logo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .left-section {
+    height: 120px;
+  }
 }
 
+/* Responsive: Buttons stack on small screens */
+@media (min-width: 576px) {
+  .btn-verify,
+  .btn-cancel {
+    width: 45%;
+  }
+}
+
+/* Responsive layout for sections and card */
 @media (min-width: 768px) {
   .left-section {
     width: 45%;
