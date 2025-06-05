@@ -39,6 +39,7 @@ function initSidebarToggle() {
     icon.classList.toggle("rotated", isCollapsed);
 
     localStorage.setItem("sidebar-collapsed", isCollapsed ? "true" : "false");
+    onSidebarToggle(); // Ensure tooltips are toggled with sidebar
   });
 
   // Apply saved collapse state or auto-collapse on small screen
@@ -53,6 +54,7 @@ function initSidebarToggle() {
       sidebar.classList.toggle("collapsed", shouldCollapse);
       icon.classList.toggle("rotated", shouldCollapse);
     }
+    onSidebarToggle(); // Ensure tooltips are toggled on resize
   }
 
   window.addEventListener("resize", handleResize);
@@ -129,6 +131,42 @@ function toggleSubmenu(event, submenuId) {
   }
 }
 
+function initTooltips() {
+  const tooltipTriggerList = document.querySelectorAll(
+    '[data-bs-toggle="tooltip"]'
+  );
+  tooltipTriggerList.forEach((tooltipTriggerEl) => {
+    new bootstrap.Tooltip(tooltipTriggerEl, {
+      container: document.body, // or '.sidebar' if you want
+    });
+  });
+}
+
+function toggleSidebarTooltips(collapsed) {
+  const tooltips = bootstrap.Tooltip.getInstance
+    ? Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]')).map(
+        (el) => bootstrap.Tooltip.getInstance(el)
+      )
+    : [];
+  tooltips.forEach((tip) => {
+    if (tip) {
+      if (collapsed) {
+        tip.enable();
+      } else {
+        tip.hide();
+        tip.disable();
+      }
+    }
+  });
+}
+
+// Call this when toggling sidebar
+function onSidebarToggle() {
+  const sidebar = document.querySelector(".sidebar");
+  const isCollapsed = sidebar.classList.contains("collapsed");
+  toggleSidebarTooltips(isCollapsed);
+}
+
 // On page load, load layout + content + init behaviors
 window.addEventListener("DOMContentLoaded", async () => {
   await loadComponent("sidebar-container", "../../components/sidebar.html");
@@ -141,9 +179,11 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   initSidebarToggle();
   highlightActiveNavLink();
+  initTooltips();
+  onSidebarToggle();
 });
 
 function logout() {
   localStorage.clear();
-  window.location.href = "../../index.html"; // Adjust path based on your folder structure
+  window.location.href = "../../index.html";
 }
